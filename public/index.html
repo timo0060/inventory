@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
     <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
        <meta charset="utf-8">
        <title>Inventory</title>
        
@@ -9,11 +10,52 @@
        
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
        <script src="https://use.fontawesome.com/fd035e4b73.js"></script>
+       <script src='https://www.google.com/recaptcha/api.js'></script>
        
        <script src="res/lib/bootstrap.min.js"></script>
+       <script src="res/lib/angular.min.js"></script>
+       <script src="res/lib/angular-ui-router.min.js"></script>
+       <script src="res/lib/angular-sanitize.min.js"></script>
+       <script src="res/lib/angular-cookies.min.js"></script>
+       <script src="res/lib/angular-flash.min.js"></script>
        
+       <script src="res/app.js"></script>
+       <script src="res/app.config.js"></script>
     </head>
-    <body>
-        <h3>Invetory Tool</h3>
+    <body ng-app="inventory">
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mainNav" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" ui-sref="home">Inventory</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="mainNav">
+              <ul class="nav navbar-nav navbar-left">
+                <li ui-sref-active="active"><a ui-sref="home">Home</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li ui-sref-active="active"><a ui-sref="login">Login</a></li>
+                <li ui-sref-active="active"><a ui-sref="register">Register</a></li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+        <ui-view></ui-view>
+        
+        <script src="res/home/home.config.js"></script>
+        <script src="res/login/login.config.js"></script>
+        <script src="res/register/register.config.js"></script>
+        
+        <script src="res/home/p.home.js"></script>
+        <script src="res/login/p.login.js"></script>
+        <script src="res/register/p.register.js"></script>
     </body>
 </html>
