@@ -1,6 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
+           <flash-message show-close="true"></flash-message>
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">
@@ -18,7 +19,7 @@
                             <input type="password" ng-model="user.password" class="form-control" required />
                         </div>
                         New User? <a ui-sref="register">Register</a>
-                        <button type="submit" class="btn btn-info pull-right">Login</button>
+                        <button type="submit" class="btn btn-info pull-right" ng-disabled="loginForm.$invalid">Login</button>
                     </form>
                 </div>
             </div>
