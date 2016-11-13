@@ -3,6 +3,7 @@
     
     angular.module("inventory", [
         'ui.router',
-        'ngFlash'
+        'ngFlash',
+        'ngCookies'
     ]);
 }())

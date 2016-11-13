@@ -5,7 +5,8 @@
       $stateProvider.state('login', {
           url: '/login',
           templateUrl: 'res/login/p.login.html',
-          controller: 'LoginController'
+          controller: 'LoginController',
+          auth: false
       });
     });
 }());

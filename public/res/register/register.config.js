@@ -5,7 +5,8 @@
       $stateProvider.state('register', {
           url: '/register',
           templateUrl: 'res/register/p.register.html',
-          controller: 'RegisterController'
+          controller: 'RegisterController',
+          auth: false
       });
     });
 }());

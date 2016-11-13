@@ -1,7 +1,7 @@
 (function(){
     'use strict';
     
-    angular.module("inventory").controller("LoginController", function($state, $log, $http, $scope, Flash){
+    angular.module("inventory").controller("LoginController", function($state, $log, $http, $scope, Flash, $cookies){
         $scope.user = {};
         
         $scope.login = function(){
@@ -13,10 +13,17 @@
                     password: $scope.user.password
                 }
             }).then(function success(res){
-                $log.debug(res);
                 
                 if(!res.data.error){
                     
+                    var user = {
+                        name: res.data.name,
+                        userid: res.data.userid,
+                        _token: res.data._token
+                    }
+                    
+                    $cookies.putObject('user', user);
+                    $state.go('profile');
                 }else{
                     var id = Flash.create('danger', res.data.message, 5000, {}, true);
                 }

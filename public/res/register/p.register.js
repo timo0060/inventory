@@ -1,7 +1,7 @@
 (function(){
     'use strict';
     
-    angular.module("inventory").controller("RegisterController", function($state, $log, $http, $scope, Flash){
+    angular.module("inventory").controller("RegisterController", function($state, $log, $http, $scope, Flash, $rootScope, $cookies){
         
         $scope.user = {};
         
@@ -19,9 +19,18 @@
                 }
             }).then(function success(res){
                 
-                $log.debug(res.data.error);
-                
                 if(!res.data.error){
+                    $log.debug(res.data)
+                    var user = {
+                        name: res.data.name,
+                        userid: res.data.userid,
+                        _token: res.data._token
+                    }
+                    
+                    $cookies.putObject('user', user);
+                    $rootScope.UserLoggedIn = true;
+                    
+                    $state.go('profile');
                     
                 }else{
                     var id = Flash.create('danger', res.data.message, 5000, {}, true);

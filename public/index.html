@@ -6,6 +6,7 @@
        <title>Inventory</title>
        
        <link rel="stylesheet" href="res/css/bootstrap.css">
+       <link rel="stylesheet" href="res/css/style.css">
        
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
        <script src="https://use.fontawesome.com/fd035e4b73.js"></script>
@@ -20,9 +21,10 @@
        
        <script src="res/app.js"></script>
        <script src="res/app.config.js"></script>
+       <script src="res/app.run.js"></script>
     </head>
     <body ng-app="inventory">
-        <nav class="navbar navbar-default">
+        <nav class="navbar navbar-default" ng-controller="NavController">
           <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -41,8 +43,11 @@
                 <li ui-sref-active="active"><a ui-sref="home">Home</a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
-                <li ui-sref-active="active"><a ui-sref="login">Login</a></li>
-                <li ui-sref-active="active"><a ui-sref="register">Register</a></li>
+                <li ui-sref-active="active" ng-hide="loggedIn"><a ui-sref="login">Login</a></li>
+                <li ui-sref-active="active" ng-hide="loggedIn"><a ui-sref="register">Register</a></li>
+                
+                <p class="navbar-text" ng-show="loggedIn">Welcome, {{user.name}}</p>
+                <li ng-show="loggedIn"><a ui-sref="home" ng-click="logout()">Logout</a></li>
               </ul>
             </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->
@@ -52,9 +57,13 @@
         <script src="res/home/home.config.js"></script>
         <script src="res/login/login.config.js"></script>
         <script src="res/register/register.config.js"></script>
+        <script src="res/profile/profile.config.js"></script>
         
+        <script src="res/nav/p.nav.js"></script>
         <script src="res/home/p.home.js"></script>
         <script src="res/login/p.login.js"></script>
         <script src="res/register/p.register.js"></script>
+        <script src="res/profile/p.profile.js"></script>
+        <script src="res/profile/p.edit.js"></script>
     </body>
 </html>

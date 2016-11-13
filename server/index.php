@@ -20,7 +20,10 @@ $app->add(function ($req, $res, $next) {
 });
 
 require_once 'api/test.php';
-require_once 'api/register.php';
-require_once 'api/login.php';
+
+require_once 'api/login/register.php';
+require_once 'api/login/login.php';
+
+require_once 'api/profile/getProfile.php';
 
 $app->run();

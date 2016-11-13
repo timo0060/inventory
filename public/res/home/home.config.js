@@ -5,7 +5,8 @@
       $stateProvider.state('home', {
           url: '/',
           templateUrl: 'res/home/p.home.html',
-          controller: 'HomeController'
+          controller: 'HomeController',
+          auth: false
       });
     });
 }());

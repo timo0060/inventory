@@ -47,17 +47,21 @@ $app->post('/api/register', function ($request, $response){
                 }
 
                 if($newUser['password'] === $newUser['repass']){
-
+                    $_token = uniqid(md5($name . $userid . $password)) . uniqid(md5($userid . $name . $password)) . uniqid(md5($password . $name . $userid));
                     $newUser['password'] = password_hash($newUser['password'], PASSWORD_DEFAULT);
 
-                    $q = "INSERT INTO `users`(userid, username, name, email, password) VALUES (?,?,?,?,?)";
+                    $q = "INSERT INTO `users`(userid, username, name, email, password, _token) VALUES (?,?,?,?,?,?)";
 
                     $stmt = $mysqli->prepare($q);
-                    $stmt->bind_param('sssss', $newUser['userid'], $newUser['username'], $newUser['name'], $newUser['email'], $newUser['password']);
+                    $stmt->bind_param('sssss', $newUser['userid'], $newUser['username'], $newUser['name'], $newUser['email'], $newUser['password'], $_token);
 
                     if(!$stmt->execute()){
                         $data['error'] = true;
                         $data['message'] = "Could not Execute SQL";
+                    }else{
+                        $data['name'] = $newUser['name'];
+                        $data['userid'] = $newUser['userid'];
+                        $data['_token'] = $_token;
                     }
 
                 }else{
